@@ -7,7 +7,7 @@ const htmlWebpackPluginConfig = {
   meta: {
     viewport:
       'width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0',
-    'theme-color': '#E1306C',
+    'theme-color': '#4285f4',
   },
   templateParameters: {
     brandName: 'Story App',
@@ -26,26 +26,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(s[ac]ss)$/i,
+        test: /\.s?css$/i,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
+          'style-loader',
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [require('autoprefixer')],
+                plugins: [require('autoprefixer')],
               },
             },
           },
-          {
-            loader: 'sass-loader',
-          },
+          'sass-loader',
         ],
+      },
+      {
+        test: /\.svg$/,
+        use: 'svg-inline-loader',
       },
     ],
   },
@@ -53,10 +51,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Home',
       filename: 'index.html',
-      template: path.resolve(__dirname, 'src/views/index.html'),
+      template: path.resolve(__dirname, 'src/pages/index.html'),
       ...htmlWebpackPluginConfig,
     }),
-
     new CopyWebpackPlugin({
       patterns: [
         {
