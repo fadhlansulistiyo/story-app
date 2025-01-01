@@ -7,7 +7,7 @@ const htmlWebpackPluginConfig = {
   meta: {
     viewport:
       'width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0',
-    'theme-color': '#4285f4',
+    'theme-color': '#ec0075',
   },
   templateParameters: {
     brandName: 'Story App',
