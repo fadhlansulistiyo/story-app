@@ -54,6 +54,12 @@ module.exports = {
       template: path.resolve(__dirname, 'src/pages/index.html'),
       ...htmlWebpackPluginConfig,
     }),
+    new HtmlWebpackPlugin({
+      title: 'Create',
+      filename: 'create/create.html',
+      template: path.resolve(__dirname, 'src/pages/create/create.html'),
+      ...htmlWebpackPluginConfig,
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
