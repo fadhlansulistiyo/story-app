@@ -9,100 +9,14 @@
 
   <body>
     <!-- Header: Navbar -->
-    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Story App</a>
-
-      <!-- Nav: Menu Hamburger -->
-      <ul class="navbar-nav flex-row d-md-none">
-        <!-- f -->
-        <li class="nav-item text-nowrap">
-          <button
-            class="nav-link px-3 text-white"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#sidebarMenu"
-            aria-controls="sidebarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="bi bi-list"></i>
-          </button>
-        </li>
-      </ul>
-    </header>
+    <header-app brandName="<%= brandName %>"></header-app>
 
     <div class="container-fluid">
       <div class="row">
         <!-- Sidebar: offcanvas -->
         <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-          <div
-            class="offcanvas-md offcanvas-end bg-body-tertiary"
-            tabindex="-1"
-            id="sidebarMenu"
-            aria-labelledby="sidebarMenuLabel"
-          >
-            <!-- Offcanvas header title -->
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="sidebarMenuLabel">Story App</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="offcanvas"
-                data-bs-target="#sidebarMenu"
-                aria-label="Close"
-              ></button>
-            </div>
-            <!-- Offcanvas menu -->
-            <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-              <ul class="nav flex-column">
-                <!-- Home -->
-                <li class="nav-item">
-                  <a
-                    class="nav-link d-flex align-items-center gap-2 active"
-                    aria-current="page"
-                    href="#"
-                  >
-                    <i class="bi bi-house"></i>
-                    Home
-                  </a>
-                </li>
-                <!-- Create Story -->
-                <li class="nav-item">
-                  <nav-link
-                    classes="d-flex align-items-center gap-2"
-                    to="/create/create.html"
-                    icon="bi-plus-circle"
-                    content="Create"
-                  ></nav-link>
-                </li>
-                <!-- Profile -->
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-person-circle"></i>
-                    Profile
-                  </a>
-                </li>
-              </ul>
-              <hr class="my-3" />
-
-              <ul class="nav flex-column mb-auto">
-                <!-- Settings -->
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-gear"></i>
-                    Settings
-                  </a>
-                </li>
-                <!-- Sign out -->
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-box-arrow-left"></i>
-                    Sign out
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <!-- OffcanvasApp -->
+          <offcanvas-app brandName="<%= brandName %>"></offcanvas-app>
         </div>
 
         <!-- Main Content -->
@@ -114,6 +28,9 @@
           </div>
 
           <div id="story-container" class="row g-4"></div>
+
+          <!-- Footer App -->
+          <footer-app></footer-app>
         </main>
       </div>
     </div>
