@@ -1,5 +1,5 @@
 // Import our custom CSS
-import '../styles/scss/main.scss';
+import '../styles/scss/vendors/vendors.scss';
 import '../styles/css/main.css';
 
 // Import components
