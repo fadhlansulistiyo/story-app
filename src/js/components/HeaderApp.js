@@ -4,11 +4,13 @@ import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 class HeaderApp extends LitWithoutShadowDom {
   static properties = {
     brandName: { type: String, reflect: true },
+    showToggle: { type: Boolean, reflect: true },
   };
 
   constructor() {
     super();
     this._checkAvailabilityProperty();
+    this.showToggle = false;
   }
 
   _checkAvailabilityProperty() {
@@ -25,22 +27,25 @@ class HeaderApp extends LitWithoutShadowDom {
         >
 
         <!-- Nav: Menu Hamburger -->
-        <ul class="navbar-nav flex-row d-md-none">
-          <!-- f -->
-          <li class="nav-item text-nowrap">
-            <button
-              class="nav-link px-3 text-white"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <i class="bi bi-list"></i>
-            </button>
-          </li>
-        </ul>
+        ${this.showToggle
+          ? html`
+              <ul class="navbar-nav flex-row d-md-none">
+                <li class="nav-item text-nowrap">
+                  <button
+                    class="nav-link px-3 text-white"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <i class="bi bi-list"></i>
+                  </button>
+                </li>
+              </ul>
+            `
+          : ''}
       </header>
     `;
   }
