@@ -2,6 +2,11 @@
 import '../styles/scss/vendors/vendors.scss';
 import '../styles/css/main.css';
 
+// custom styling (sass) for profile page
+if (window.location.pathname.includes('profile')) {
+  import('../styles/css/profile.css');
+}
+
 // Import components
 import './components/index';
 
