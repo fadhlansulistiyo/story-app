@@ -1,7 +1,72 @@
-footer .copyright {
-  padding: 24px;
+@use '../abstracts/variables' as var;
 
-  p {
-    text-align: center;
+footer {
+  background-color: var.$secondary-color;
+  color: #ffffff;
+  padding: 2rem 1rem;
+
+  .copyright {
+    padding: 1rem;
+
+    p {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #ffffffcc;
+    }
+  }
+
+  // Social Media Links
+  .social-medias {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-block: 1rem;
+
+    .social-media-link {
+      font-size: 1.5rem;
+      color: #ffffffcc;
+      transition:
+        color 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+
+      &:hover {
+        color: var.$primary-color;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  // Additional Footer Links
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block: 1rem;
+
+    a {
+      text-decoration: none;
+      color: #ffffffcc;
+      font-size: 0.875rem;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: var.$primary-color;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    padding: 3rem 2rem;
+
+    .social-medias {
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      gap: 1rem;
+    }
   }
 }

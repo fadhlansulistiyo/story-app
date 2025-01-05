@@ -8,18 +8,19 @@ header {
     inset-inline: 0;
     inset-block-start: 0;
     z-index: 9999;
-
-    transition: box-shadow 0.2s ease-in-out;
+    background-color: transparent;
+    transition:
+      box-shadow 0.2s ease-in-out,
+      background-color 0.3s ease-in-out;
 
     &.scrolled {
       background-color: #ffffff;
-      box-shadow: 0 2px 8px 4px #00000055;
+      box-shadow: 0 2px 8px 4px rgba(0, 0, 0, 0.33);
     }
   }
 
   .navbar {
-    padding: 22px 24px;
-
+    padding: 1.5rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,53 +29,84 @@ header {
       position: fixed;
       inset-block-start: 5rem;
       inset-inline: 0;
-
-      padding: 30px 20px;
-      background-color: white;
+      padding: 1.25rem 1rem;
+      background-color: #ffffff;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
 
-      transition: 0.35s ease-in-out;
+      transition:
+        transform 0.35s ease-in-out,
+        opacity 0.35s ease-in-out;
       transform: translateX(-100%);
-      opacity: 1;
-
-      animation: disappear 0.5s ease-in-out;
+      opacity: 0;
 
       &.active {
         transform: translateX(0);
-        box-shadow: 0 6px 8px 0 #00000033;
-
-        animation: appear 0.5s ease-in-out;
+        opacity: 1;
       }
 
       .nav-item a {
         display: inline-block;
-
-        padding: 6px 12px;
+        padding: 0.5rem 0.75rem;
         font-size: 1rem;
+        color: var.$secondary-color;
+        text-transform: capitalize;
+        font-weight: 600;
+        text-decoration: none;
 
-        transition: all 0.15s ease-in-out;
+        transition:
+          color 0.2s ease-in-out,
+          text-shadow 0.2s ease-in-out;
 
         &:hover {
-          color: #2d3e50;
-
-          text-shadow: 0 0 2px #000000;
+          color: var.$primary-color;
+          text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
         }
+      }
+    }
+
+    button.hamburger-btn {
+      all: unset;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+
+      span {
+        display: block;
+        width: 1.5rem;
+        height: 0.15rem;
+        background-color: var.$primary-color;
+        border-radius: 2px;
+
+        transition: transform 0.3s ease-in-out;
+      }
+
+      &.active span:nth-child(1) {
+        transform: translateY(0.45rem) rotate(45deg);
+      }
+
+      &.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      &.active span:nth-child(3) {
+        transform: translateY(-0.45rem) rotate(-45deg);
       }
     }
   }
 }
 
-/* SM: minimum viewport width 576px or above */
 @media screen and (min-width: map.get(var.$breakpoints, 'sm')) {
   header .navbar {
-    padding: 25px 40px;
+    padding: 1.75rem 2.5rem;
   }
 }
 
-/* MD: minimum viewport width 768px or above */
 @media screen and (min-width: map.get(var.$breakpoints, 'md')) {
   header .navbar {
     button.hamburger-btn {
@@ -83,9 +115,12 @@ header {
 
     .nav-items {
       position: static;
-      transform: translateX(0);
+      transform: none;
       opacity: 1;
       padding: 0;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
 
       display: flex;
       flex-direction: row;
@@ -94,9 +129,8 @@ header {
   }
 }
 
-/* LG: minimum viewport width 992px or above */
 @media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
   header .navbar {
-    padding: 24px 50px;
+    padding: 1.5rem 3rem;
   }
 }

@@ -3,26 +3,29 @@
 
 main .hero {
   padding-block: 14rem;
-
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 2rem;
 
   & > * {
-    padding: 16px;
+    padding: 1rem;
   }
 
   .user-intro {
+    text-align: center;
+
     .name {
       font-size: 2rem;
       font-weight: 800;
+      color: var.$primary-color;
     }
 
     .title {
       font-size: 1.1rem;
-      margin-block-start: 8px;
+      margin-block-start: 0.5rem;
+      color: var.$secondary-color;
     }
   }
 
@@ -30,10 +33,12 @@ main .hero {
     width: 80%;
     display: block;
     margin-inline: auto;
+    border-radius: 50%;
+    border: 4px solid var.$primary-color;
   }
 }
 
-/* MD: minimum viewport width 768px or above */
+// Medium Screens (Min-width: 768px)
 @media screen and (min-width: map.get(var.$breakpoints, 'md')) {
   main .hero {
     flex-direction: row;
@@ -49,11 +54,12 @@ main .hero {
 
     img {
       width: 100%;
+      border-radius: 50%;
     }
   }
 }
 
-/* LG: minimum viewport width 992px or above */
+// Large Screens (Min-width: 992px)
 @media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
   main .hero .user-intro .name {
     font-size: 3rem;

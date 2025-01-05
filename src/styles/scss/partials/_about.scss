@@ -1,52 +1,135 @@
 @use '../abstracts/variables' as var;
 @use 'sass:map';
 
-main .about .main-about {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
+main .about {
+  padding-block: 5rem;
+  background-color: #f9f9f9;
 
-  .photo-profile {
+  .main-about {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 2rem;
 
-    img {
-      width: 80%;
-      display: block;
-      margin-inline: auto;
+    /* Profile Photo Section */
+    .photo-profile {
+      flex: 0 0 auto;
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 70%;
+        max-width: 250px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: 5px solid var.$primary-color;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.3s ease-in-out,
+          box-shadow 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+      }
     }
-  }
 
-  .description {
-    p {
-      margin-block-end: 8px;
-    }
+    /* Description Section */
+    .description {
+      flex: 1;
+      text-align: center;
 
-    .download-cv {
-      width: 100%;
-      padding: 10px 3rem;
-      margin-block-start: 16px;
+      h2 {
+        font-size: 2rem;
+        color: var.$secondary-color;
+        margin-bottom: 1rem;
+      }
 
-      text-transform: uppercase;
+      p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #333333;
+        margin-bottom: 1rem;
+      }
+
+      /* CV Download Button */
+      .download-cv {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        margin-top: 1rem;
+
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: var.$primary-color;
+        border: none;
+        border-radius: var.$secondary-border-radius;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          background-color 0.3s ease-in-out,
+          transform 0.2s ease-in-out;
+
+        &:hover {
+          background-color: var.$secondary-color;
+          transform: translateY(-3px);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
+        }
+      }
     }
   }
 }
 
 /* MD: minimum viewport width 768px or above */
 @media screen and (min-width: map.get(var.$breakpoints, 'md')) {
-  main .about .main-about {
-    flex-direction: row;
+  main .about {
+    .main-about {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
 
-    .photo-profile {
-      flex-basis: 40%;
+      .photo-profile {
+        flex: 1;
+        justify-content: flex-end;
+        padding-inline-end: 2rem;
+      }
+
+      .description {
+        flex: 2;
+
+        h2 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1.125rem;
+        }
+
+        .download-cv {
+          margin-top: 2rem;
+        }
+      }
     }
+  }
+}
 
-    .description {
-      flex-basis: 60%;
+/* LG: minimum viewport width 992px or above */
+@media screen and (min-width: map.get(var.$breakpoints, 'lg')) {
+  main .about {
+    .main-about {
+      gap: 3rem;
 
-      .download-cv {
-        width: fit-content;
+      .photo-profile img {
+        max-width: 300px;
+      }
+
+      .description h2 {
+        font-size: 3rem;
       }
     }
   }

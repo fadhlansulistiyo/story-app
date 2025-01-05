@@ -4,9 +4,17 @@
   display: flex;
   flex-direction: column;
 
-  padding: 24px 8px;
-  border: 1px solid #00000055;
+  padding: 1.5rem 0.5rem;
+  border: 1px solid #00000033;
   border-radius: var.$secondary-border-radius;
 
-  transition: 0.25s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.25s ease-in-out,
+    box-shadow 0.25s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
