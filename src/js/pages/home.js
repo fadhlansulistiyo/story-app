@@ -5,7 +5,7 @@ const Home = {
   async init() {
     CheckUserAuth.checkLoginState();
 
-    this._showPlaceholders(); // Show placeholders first
+    this._showPlaceholders();
     await this._initialData();
   },
 
