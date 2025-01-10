@@ -5,6 +5,9 @@ const Utils = {
   getUserToken(key) {
     return sessionStorage.getItem(key);
   },
+  getUserName(key) {
+    return sessionStorage.getItem(key);
+  },
   destroyUserToken(key) {
     return sessionStorage.removeItem(key);
   },

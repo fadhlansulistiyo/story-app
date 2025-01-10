@@ -51,6 +51,8 @@ const Login = {
         });
 
         Utils.setUserToken(Config.USER_TOKEN_KEY, response.data.loginResult.token);
+        Utils.setUserToken(Config.USER_NAME, response.data.loginResult.name);
+        console.log(response.data.loginResult);
         this._isLoginSuccessful = true;
         this._modalNotification.showModal('Login successful! Redirecting to the dashboard...');
       } catch (error) {

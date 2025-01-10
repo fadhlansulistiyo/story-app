@@ -11,19 +11,8 @@ class NavLink extends LitWithoutShadowDom {
 
   constructor() {
     super();
-    this._checkAvailabilityProperty();
 
     this.classes = '';
-  }
-
-  _checkAvailabilityProperty() {
-    if (!this.hasAttribute('to')) {
-      throw new Error(`The "to" attribute must be applied to the element ${this.localName}`);
-    }
-
-    if (!this.hasAttribute('content')) {
-      throw new Error(`The "content" attribute must be applied to the element ${this.localName}`);
-    }
   }
 
   render() {

@@ -1,8 +1,12 @@
 import { html } from 'lit';
 import LitWithoutShadowDom from './base/LitWithoutShadowDom';
+import Utils from '../utils/utils';
+import Config from '../config/config';
 
 class Sidebars extends LitWithoutShadowDom {
   render() {
+    const userName = Utils.getUserName(Config.USER_NAME) || 'Profile';
+
     return html`
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
@@ -28,7 +32,7 @@ class Sidebars extends LitWithoutShadowDom {
               classes="d-flex align-items-center gap-2"
               to="/profile/profile.html"
               icon="bi-person-circle"
-              content="Profile"
+              content=${userName}
             ></nav-link>
           </li>
         </ul>
