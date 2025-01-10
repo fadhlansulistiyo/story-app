@@ -2,6 +2,7 @@ import { html } from 'lit';
 import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 import Utils from '../utils/utils';
 import Config from '../config/config';
+import CheckUserAuth from '../pages/auth/check-user-auth';
 
 class Sidebars extends LitWithoutShadowDom {
   render() {
@@ -48,7 +49,7 @@ class Sidebars extends LitWithoutShadowDom {
           </li>
           <!-- Sign out -->
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#">
+            <a class="nav-link d-flex align-items-center gap-2" href="#" @click=${this._userLogOut}>
               <i class="bi bi-box-arrow-left"></i>
               Sign out
             </a>
@@ -56,6 +57,13 @@ class Sidebars extends LitWithoutShadowDom {
         </ul>
       </div>
     `;
+  }
+
+  _userLogOut(event) {
+    event.preventDefault();
+    Utils.destroyUserToken(Config.USER_TOKEN_KEY);
+
+    CheckUserAuth.checkLoginState();
   }
 }
 

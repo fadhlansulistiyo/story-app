@@ -44,6 +44,8 @@ const Login = {
     const formData = this._getFormData();
 
     if (this._validateFormData(formData)) {
+      this._handleSpinner(true);
+
       try {
         const response = await Auth.login({
           email: formData.email,
@@ -52,7 +54,9 @@ const Login = {
 
         Utils.setUserToken(Config.USER_TOKEN_KEY, response.data.loginResult.token);
         Utils.setUserToken(Config.USER_NAME, response.data.loginResult.name);
+
         console.log(response.data.loginResult);
+
         this._isLoginSuccessful = true;
         this._modalNotification.showModal('Login successful! Redirecting to the dashboard...');
       } catch (error) {
@@ -76,6 +80,8 @@ const Login = {
         }
 
         this._modalNotification.showModal(errorMessage);
+      } finally {
+        this._handleSpinner(false);
       }
     } else {
       this._modalNotification.showModal('Please fill in all fields.');
@@ -98,6 +104,22 @@ const Login = {
 
   _goToDashboardPage() {
     window.location.href = '/';
+  },
+
+  _handleSpinner(isLoading) {
+    const loginButton = document.querySelector('#loginButton');
+    const loginButtonText = document.querySelector('#loginButtonText');
+    const loginSpinner = document.querySelector('#loginSpinner');
+
+    if (isLoading) {
+      loginButton.disabled = true;
+      loginButtonText.classList.add('d-none');
+      loginSpinner.classList.remove('d-none');
+    } else {
+      loginButton.disabled = false;
+      loginButtonText.classList.remove('d-none');
+      loginSpinner.classList.add('d-none');
+    }
   },
 };
 

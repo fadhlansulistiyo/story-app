@@ -23,19 +23,7 @@ const CheckUserAuth = {
   },
 
   _showLoginMenuOrUserLogMenu(userLoginState) {
-    // const loginMenu = document.querySelector('#loginMenu');
-    // const userLoggedMenu = document.querySelector('#userLoggedMenu');
-    // if (!userLoginState) {
-    //   loginMenu?.classList.add('d-block');
-    //   userLoggedMenu?.classList.add('d-none');
-    //   loginMenu?.classList.remove('d-none');
-    //   userLoggedMenu?.classList.remove('d-block');
-    //   return;
-    // }
-    // loginMenu?.classList.add('d-none');
-    // userLoggedMenu?.classList.add('d-block');
-    // loginMenu?.classList.remove('d-block');
-    // userLoggedMenu?.classList.remove('d-none');
+    //
   },
 
   _isUserOnAuthPage(pages) {

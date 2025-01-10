@@ -42,6 +42,8 @@ const Register = {
     const formData = this._getFormData();
 
     if (this._validateFormData(formData)) {
+      this._handleSpinner(true);
+
       try {
         const response = await Auth.register({
           name: formData.name,
@@ -74,6 +76,8 @@ const Register = {
         }
 
         this._modalNotification.showModal(errorMessage);
+      } finally {
+        this._handleSpinner(false);
       }
     } else {
       this._modalNotification.showModal('Please complete all fields.');
@@ -98,6 +102,22 @@ const Register = {
 
   _goToLoginPage() {
     window.location.href = '/auth/login.html';
+  },
+
+  _handleSpinner(isLoading) {
+    const registerButton = document.querySelector('#registerButton');
+    const registerButtonText = document.querySelector('#registerButtonText');
+    const registerSpinner = document.querySelector('#registerSpinner');
+
+    if (isLoading) {
+      registerButton.disabled = true;
+      registerButtonText.classList.add('d-none');
+      registerSpinner.classList.remove('d-none');
+    } else {
+      registerButton.disabled = false;
+      registerButtonText.classList.remove('d-none');
+      registerSpinner.classList.add('d-none');
+    }
   },
 };
 

@@ -5,6 +5,7 @@ const Home = {
   async init() {
     CheckUserAuth.checkLoginState();
 
+    this._showPlaceholders(); // Show placeholders first
     await this._initialData();
   },
 
@@ -19,6 +20,19 @@ const Home = {
       console.error('Failed to fetch list of stories:', error);
       const storyContainer = document.querySelector('#story-container');
       storyContainer.innerHTML = this._templateEmptyStory();
+    }
+  },
+
+  _showPlaceholders() {
+    const storyContainer = document.querySelector('#story-container');
+    storyContainer.innerHTML = '';
+
+    for (let i = 0; i < 5; i++) {
+      const storyElement = document.createElement('story-item');
+      storyElement.loading = true;
+      storyElement.classes = i % 2 === 0 ? 'mb-3' : '';
+
+      storyContainer.appendChild(storyElement);
     }
   },
 

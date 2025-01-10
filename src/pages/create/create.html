@@ -35,7 +35,15 @@
 
         <!-- Submit Button -->
         <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary px-5">Share</button>
+          <button id="shareButton" type="submit" class="btn btn-primary px-5">
+            <span id="shareButtonText">Share</span>
+            <span
+              id="shareSpinner"
+              class="spinner-border spinner-border-sm d-none"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
         </div>
       </form>
     </main>

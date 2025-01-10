@@ -62,6 +62,8 @@ const Create = {
     const formData = this._getFormData();
 
     if (this._validateFormData(formData)) {
+      this._handleSpinner(true);
+
       try {
         await StoryApi.add({
           description: formData.description,
@@ -72,6 +74,8 @@ const Create = {
       } catch (error) {
         console.error('Failed to add story:', error);
         this._modalNotification.showModal('Failed to add story. Please try again.');
+      } finally {
+        this._handleSpinner(false);
       }
     } else {
       alert('Please complete all fields before submitting!');
@@ -85,6 +89,22 @@ const Create = {
 
   _goToHomePage() {
     window.location.href = '/';
+  },
+
+  _handleSpinner(isLoading) {
+    const shareButton = document.querySelector('#shareButton');
+    const shareButtonText = document.querySelector('#shareButtonText');
+    const shareSpinner = document.querySelector('#shareSpinner');
+
+    if (isLoading) {
+      shareButton.disabled = true;
+      shareButtonText.classList.add('d-none');
+      shareSpinner.classList.remove('d-none');
+    } else {
+      shareButton.disabled = false;
+      shareButtonText.classList.remove('d-none');
+      shareSpinner.classList.add('d-none');
+    }
   },
 };
 

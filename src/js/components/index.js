@@ -11,3 +11,5 @@ import './create/ToastNotification';
 
 import './form/InputWithValidation';
 import './ModalNotification';
+
+import './LoadingSpinner';
