@@ -48,24 +48,46 @@ module.exports = {
     ],
   },
   plugins: [
+    // Home
     new HtmlWebpackPlugin({
       title: 'Home',
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/pages/index.html'),
       ...htmlWebpackPluginConfig,
     }),
+
+    // Create
     new HtmlWebpackPlugin({
       title: 'Create',
       filename: 'create/create.html',
       template: path.resolve(__dirname, 'src/pages/create/create.html'),
       ...htmlWebpackPluginConfig,
     }),
+
+    // Profile Page
     new HtmlWebpackPlugin({
       title: 'Profile',
       filename: 'profile/profile.html',
       template: path.resolve(__dirname, 'src/pages/profile/profile.html'),
       ...htmlWebpackPluginConfig,
     }),
+
+    // Login Page
+    new HtmlWebpackPlugin({
+      title: 'Login',
+      filename: 'auth/login.html',
+      template: path.resolve(__dirname, 'src/pages/auth/login.html'),
+      ...htmlWebpackPluginConfig,
+    }),
+
+    // Register Page
+    new HtmlWebpackPlugin({
+      title: 'Register',
+      filename: 'auth/register.html',
+      template: path.resolve(__dirname, 'src/pages/auth/register.html'),
+      ...htmlWebpackPluginConfig,
+    }),
+
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -74,6 +96,7 @@ module.exports = {
         },
       ],
     }),
+
     new CleanWebpackPlugin(),
   ],
 };

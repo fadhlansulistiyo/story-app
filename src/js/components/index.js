@@ -8,3 +8,6 @@ import './HeaderApp';
 import './create/InputImageWithPreview';
 import './create/TextareaWithValidation';
 import './create/ToastNotification';
+
+import './form/InputWithValidation';
+import './ModalNotification';

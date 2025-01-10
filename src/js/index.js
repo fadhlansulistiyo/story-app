@@ -14,12 +14,20 @@ import './components/index';
 import Home from './pages/home';
 import Create from './pages/create/create';
 import Profile from './pages/profile/profile';
+
+// Auth
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
+
 import * as bootstrap from 'bootstrap';
 
 const routes = {
   '/': Home,
   '/create/create.html': Create,
   '/profile/profile.html': Profile,
+
+  '/auth/login.html': Login,
+  '/auth/register.html': Register,
 };
 
 const detectRoute = () => routes[window.location.pathname];

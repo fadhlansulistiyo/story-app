@@ -1,14 +1,18 @@
+import CheckUserAuth from './auth/check-user-auth';
+import StoryApi from '../network/story-api';
+
 const Home = {
   async init() {
+    CheckUserAuth.checkLoginState();
+
     await this._initialData();
   },
 
   async _initialData() {
     try {
-      const fetchListStory = await fetch('/data/list_story.json');
-      const responseListStory = await fetchListStory.json();
-
-      this._listStory = responseListStory.listStory;
+      const response = await StoryApi.getAll();
+      console.log(response);
+      this._listStory = response.listStory;
 
       this._populateStoryDataToCard(this._listStory);
     } catch (error) {
@@ -45,19 +49,6 @@ const Home = {
 
       storyContainer.appendChild(storyElement);
     });
-  },
-
-  _templateStoryItem(index, story) {
-    return `
-      <story-item
-        id="${story.id}"
-        name="${story.name}"
-        description="${story.description}"
-        photoUrl="${story.photoUrl}"
-        createdAt="${new Date(story.createdAt).toLocaleDateString()}"
-        classes="${index % 2 === 0 ? 'mb-3' : ''}">
-      </story-item>
-    `;
   },
 
   _templateEmptyStory() {

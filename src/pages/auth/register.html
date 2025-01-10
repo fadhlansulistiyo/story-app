@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="../icons/favicon.png" type="image/x-icon" />
+    <title><%= htmlWebpackPlugin.options.title %> | Story App</title>
+  </head>
+
+  <body>
+    <main class="min-vh-100 d-flex align-items-center bg-light">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-5">
+            <div class="card shadow-sm">
+              <div class="card-body p-4">
+                <h1 class="text-center mb-4 text-primary">Create Account</h1>
+                <p class="text-center text-muted mb-4">Register to start using the Story App</p>
+
+                <form id="registerForm" novalidate>
+                  <div class="mb-3">
+                    <label for="validationCustomRecordName" class="form-label">Name</label>
+                    <input-with-validation
+                      type="text"
+                      inputId="validationCustomRecordName"
+                      invalidFeedbackMessage="Name is required."
+                      required
+                    ></input-with-validation>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="validationCustomEmail" class="form-label">Email</label>
+                    <input-with-validation
+                      type="email"
+                      inputId="validationCustomEmail"
+                      invalidFeedbackMessage="Email is required."
+                      required
+                    ></input-with-validation>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="validationCustomPassword" class="form-label">Password</label>
+                    <input-with-validation
+                      type="password"
+                      inputId="validationCustomPassword"
+                      invalidFeedbackMessage="Password is required."
+                      required
+                    ></input-with-validation>
+                  </div>
+
+                  <button class="btn btn-primary w-100" type="submit">Register</button>
+                </form>
+
+                <div class="mt-4 text-center">
+                  <p class="small text-muted">
+                    Already have an account?
+                    <a href="/auth/login.html" class="text-primary">Login</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal Notification -->
+    <modal-notification></modal-notification>
+  </body>
+</html>

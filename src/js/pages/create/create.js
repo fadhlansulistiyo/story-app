@@ -1,5 +1,10 @@
+import CheckUserAuth from '../auth/check-user-auth';
+import StoryApi from '../../network/story-api';
+
 const Create = {
   async init() {
+    CheckUserAuth.checkLoginState();
+
     this._initialUI();
     this._initialListener();
   },
@@ -9,14 +14,14 @@ const Create = {
     this._descriptionInput = document.querySelector('textarea-with-validation');
     this._submitButton = document.querySelector('button[type="submit"]');
     this._addRecordForm = document.querySelector('#addRecordForm');
-    this._toastNotification = document.querySelector('toast-notification');
+    this._modalNotification = document.querySelector('modal-notification');
 
     if (
       !this._imageInput ||
       !this._descriptionInput ||
       !this._submitButton ||
       !this._addRecordForm ||
-      !this._toastNotification
+      !this._modalNotification
     ) {
       throw new Error('Required form elements are missing in the DOM!');
     }
@@ -34,43 +39,48 @@ const Create = {
       },
       false,
     );
+
+    this._modalNotification.addEventListener('confirm', () => {
+      this._goToHomePage();
+    });
   },
 
   _getFormData() {
-    const previewImage = this._imageInput.querySelector(`#${this._imageInput.inputId}-preview`);
-    if (!previewImage) {
-      throw new Error('Preview image element is missing!');
+    const imageInput = this._imageInput.querySelector('input[type="file"]');
+    if (!imageInput || imageInput.files.length === 0) {
+      throw new Error('No image file selected!');
     }
 
+    const photo = imageInput.files[0];
     return {
-      id: `story-${Date.now()}`,
-      name: 'fadhlansulistiyo',
       description: this._descriptionInput.value,
-      photoUrl: previewImage.src,
-      createdAt: new Date().toISOString(),
+      photo,
     };
   },
 
-  _postStory() {
+  async _postStory() {
     const formData = this._getFormData();
 
     if (this._validateFormData(formData)) {
-      console.log('formData', formData);
-      this._toastNotification.showToast('Story successfully added!');
+      try {
+        await StoryApi.add({
+          description: formData.description,
+          photo: formData.photo,
+        });
 
-      // this._goToHomePage();
+        this._modalNotification.showModal('Story successfully added!');
+      } catch (error) {
+        console.error('Failed to add story:', error);
+        this._modalNotification.showModal('Failed to add story. Please try again.');
+      }
     } else {
       alert('Please complete all fields before submitting!');
     }
   },
 
   _validateFormData(formData) {
-    const formDataFiltered = Object.values(formData).filter((item) => !item);
-
-    const imageInput = this._imageInput.querySelector('input[type="file"]');
-    const imageFileValid = imageInput && imageInput.files.length > 0;
-
-    return formDataFiltered.length === 0 && imageFileValid;
+    const { description, photo } = formData;
+    return Boolean(description && photo);
   },
 
   _goToHomePage() {
